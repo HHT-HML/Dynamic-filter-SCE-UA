@@ -1,0 +1,538 @@
+{
+  "title": [ "EFDC+ Demonstration", "", "Input for Sediment Diagenesis parameters opened and used only when IWQBEN=1" ],
+  "kinetics_option": 1,
+  "number_of_variables": 20,
+  "use_kinetic_zones": 0,
+  "number_of_kinetic_zones": 1,
+  "temperature_lookup_table_size": 550,
+  "number_of_time_series_output_locations": 4,
+  "number_of_time_series_output_variables": 4,
+  "number_of_sediment_zones": 1,
+  "number_of_sediment_time_series_output_variables": 1,
+  "max_number_of_time_series_output_locations": 4,
+  "kinetic_update_time_step": 1,
+  "rpem_activate": 0,
+  "active_constituents": {
+    "ROC": 0,
+    "LOC": 0,
+    "DOC": 1,
+    "ROP": 0,
+    "LOP": 0,
+    "DOP": 1,
+    "P4D": 1,
+    "RON": 0,
+    "LON": 0,
+    "DON": 1,
+    "NHX": 1,
+    "NOX": 1,
+    "SUU": 0,
+    "SAA": 0,
+    "COD": 1,
+    "DOX": 1,
+    "TAM": 0,
+    "FCB": 0,
+    "CO2": 0,
+    "ALG1": 1
+  },
+  "silica_activate": 0,
+  "shellfish_farm_activate": 0,
+  "number_of_shellfish_species": 0,
+  "number_of_shellfish_cells": 0,
+  "zooplankton_activate": 0,
+  "number_of_zooplankton_groups": 0,
+  "number_of_algae_groups": 1,
+  "number_of_macroalgae": 0,
+  "po4_sorption_option": 1,
+  "cyanobacteria_salinity_toxicity": 0,
+  "log_negative_concentrations": 0,
+  "write_restart": 1,
+  "decomposition_subdomains": 1,
+  "subdomain_cells": 804,
+  "initial_condition_option": 0,
+  "use_atmospheric_dry_deposition": 0,
+  "formulation_for_DO_saturation": 0,
+  "elevation_adjustment_for_DO_saturation": 0,
+  "elevation_offset_for_DO_saturation": 0,
+  "number_of_hours_averaging_DO": 0,
+  "solar_radiation": {
+    "source_option": 0,
+    "initial_optimal_sr": 350,
+    "minimum_optimal_sr": 40,
+    "fraction_of_daylight": 0.5,
+    "daily_weighting_factors": [ 0.7, 0.2, 0.1, 0.7 ],
+    "photoactive_radiation_fraction": 0.75,
+    "ice_transmitted_fraction": 0.1
+  },
+  "light_extinction": {
+    "light_extinction_diagnostics": 0,
+    "total_suspended_solids_coeff": 0.052,
+    "chlorophyll_coefficient": 0.031,
+    "chlorophyll_exponent": 1,
+    "particular_organic_matter_coeff": 1,
+    "dissolved_organic_carbon_coeff": 0,
+    "background_coeff": 0.45
+  },
+  "reaeration": {
+    "reaeration_option": 1,
+    "reaeration_constant":  10.24438456202014,
+    "temperature_rate_const": 1.024,
+    "adjustment_factor": 1
+  },
+  "nutrient_sorption": {
+    "partition_coeff_for_sorbed_dissolved_PO4":  10.0,
+    "partition_coeff_for_sorbed_dissolved_SA": 0
+  },
+  "hydrolysis": {
+    "reference_temperature": 20,
+    "effect_of_temperature": 0.069,
+    "carbon": {
+      "minimum_rate": {
+        "RPOC": 0.005,
+        "LPOC": 0.075
+      },
+      "constant_relating_to_algae": {
+        "RPOC": 0,
+        "LPOC": 0
+      }
+    },
+    "phosphorus": {
+      "minimum_rate": {
+        "RPOP": 0.005,
+        "LPOP": 0.075,
+        "P4D" :  6.7
+      },
+      "constant_relating_to_algae": {
+        "RPOP": 0,
+        "LPOP": 0,
+        "P4D" :  6.7
+      },
+      "carbon_to_phosphorus_ratio": [ 42, 85, 200 ]
+    },
+    "nitrogen": {
+      "minimum_rate": {
+        "RPON": 0.005,
+        "LPON": 0.075,
+        "DON" :  3.4
+      },
+      "constant_relating_to_algae": {
+        "RPON": 0,
+        "LPON": 0,
+        "DON" :  10.0
+      }
+    }
+  },
+  "mineralization": {
+    "reference_temperature": 20,
+    "effect_of_temperature": 0.069,
+    "carbon": {
+      "minimum_rate": {
+        "DOC": 0.01
+      },
+      "constant_relating_to_algae": {
+        "DOC": 0
+      },
+      "constant_relating_to_macroalgae": {
+        "DOC": 0
+      }
+    },
+    "phosphorus": {
+      "minimum_rate": {
+        "DOP":  13.333333333333332,
+        "P4D":  0.1
+      },
+      "constant_relating_to_algae": {
+        "DOP":  3.4000000000000004,
+        "P4D":  0.1
+      }
+    },
+    "nitrogen": {
+      "minimum_rate": {
+        "DON":  0.1
+      },
+      "constant_relating_to_algae": {
+        "DON":  7.522170258106753
+      }
+    }
+  },
+  "nitrification": {
+    "mass_NO3_reduces_per_DOC_oxidized": 0.933,
+    "max_rate":  0.1,
+    "half_sat_const_for_DO":  3.4000000000000004,
+    "half_sat_const_for_NH4":  13.333333333333332,
+    "reference_temperature": 27,
+    "suboptimal_temperature_effect_const": 0.0045,
+    "superoptimal_temperature_effect_const": 0.0045
+  },
+  "denitrification": {
+    "oxic_respiration_half_sat_const_for_DO": 1,
+    "half_sat_const": 0.1,
+    "ratio_to_oxic_DOC_respiration": 0.5
+  },
+  "silica_dissolution": {
+    "dissolution_rate": 0.05,
+    "reference_temperature": 20,
+    "effect_of_temperature": 0.092
+  },
+  "TAM_release": {
+    "half_anoxic_rate_DO": 0.5,
+    "anoxic_release_rate": 0,
+    "reference_temperature": 16,
+    "effect_of_temperature": 0.1,
+    "solubility_at_anoxic_conditions": 0,
+    "solubility_to_DO_const": 0
+  },
+  "coliform_decay_rate": {
+    "first_order_decay_rate": 0.5,
+    "temperature_effect_const": 1.07
+  },
+  "COD_decay": {
+    "oxygen_half_sat_const_for_COD_decay": 1.5,
+    "COD_decay_rate": 0.1,
+    "reference_temperature": 20,
+    "effect_of_temperature": 0.041
+  },
+  "settling_velocity": {
+    "settling_velocity_option": 0,
+    "refractory_POM": 0.2,
+    "labile_POM": 0.2,
+    "particles_sorbed_to_TAM": 0.2
+  },
+  "sediment_diagenesis": {
+    "benthic_flux_option": 0,
+    "number_of_reactive_classes": 3,
+    "benthic_flux_rates": {
+      "phosphate": 0.003,
+      "ammonia": 0.15,
+      "nitrate": 0.03,
+      "silica": 0.15,
+      "COD": 0.5,
+      "SOD": -1,
+      "temperature_factor": 1
+    }
+  },
+  "number_of_time_series": {
+    "ROC": 0,
+    "LOC": 0,
+    "DOC": 4,
+    "ROP": 0,
+    "LOP": 0,
+    "DOP": 4,
+    "P4D": 4,
+    "RON": 0,
+    "LON": 0,
+    "DON": 4,
+    "NHX": 4,
+    "NOX": 4,
+    "SUU": 0,
+    "SAA": 0,
+    "COD": 4,
+    "DOX": 4,
+    "TAM": 0,
+    "FCB": 0,
+    "CO2": 0,
+    "ALG1": 4
+  },
+  "open_boundaries": {
+    "south": {
+      "number_of_cells": 0,
+      "cells": []
+    },
+    "west": {
+      "number_of_cells": 0,
+      "cells": []
+    },
+    "east": {
+      "number_of_cells": 0,
+      "cells": []
+    },
+    "north": {
+      "number_of_cells": 0,
+      "cells": []
+    }
+  },
+  "point_source_load_option": 7,
+  "number_of_mass_loading_point_sources": 7,
+  "mass_loading_point_sources": {
+    "number_of_point_sources": 7,
+    "number_of_time_series": 0,
+    "constant_point_sources": [   
+      {
+        "name": "D1",
+        "I": 17,
+        "J": 55,
+        "K": 0,
+        "NSR": 4,
+        "PSQ": 0,
+        "concentrations": {
+            "ROC": 0,
+            "LOC": 0,
+            "DOC": 0,
+            "ROP": 0,
+            "LOP": 0,
+            "DOP": 0,
+            "P4D": 0,
+            "RON": 0,
+            "LON": 0,
+            "DON": 0,
+            "NHX": 0,
+            "NOX": 0,
+            "SUU": 0,
+            "SAA": 0,
+            "COD": 0,
+            "DOX": 0,
+            "TAM": 0,
+            "FCB": 0,
+            "CO2": 0,
+            "ALG1": 0
+        }
+      },
+      {
+        "name": "D2",
+        "I": 28,
+        "J": 46,
+        "K": 0,
+        "NSR": 4,
+        "PSQ": 0,
+        "concentrations": {
+            "ROC": 0,
+            "LOC": 0,
+            "DOC": 0,
+            "ROP": 0,
+            "LOP": 0,
+            "DOP": 0,
+            "P4D": 0,
+            "RON": 0,
+            "LON": 0,
+            "DON": 0,
+            "NHX": 0,
+            "NOX": 0,
+            "SUU": 0,
+            "SAA": 0,
+            "COD": 0,
+            "DOX": 0,
+            "TAM": 0,
+            "FCB": 0,
+            "CO2": 0,
+            "ALG1": 0
+        }
+      },
+      {
+        "name": "D3",
+        "I": 22,
+        "J": 48,
+        "K": 0,
+        "NSR": 4,
+        "PSQ": 0,
+        "concentrations": {
+            "ROC": 0,
+            "LOC": 0,
+            "DOC": 0,
+            "ROP": 0,
+            "LOP": 0,
+            "DOP": 0,
+            "P4D": 0,
+            "RON": 0,
+            "LON": 0,
+            "DON": 0,
+            "NHX": 0,
+            "NOX": 0,
+            "SUU": 0,
+            "SAA": 0,
+            "COD": 0,
+            "DOX": 0,
+            "TAM": 0,
+            "FCB": 0,
+            "CO2": 0,
+            "ALG1": 0
+        }
+      },
+      {
+        "name": "D4",
+        "I": 7,
+        "J": 21,
+        "K": 0,
+        "NSR": 4,
+        "PSQ": 0,
+        "concentrations": {
+            "ROC": 0,
+            "LOC": 0,
+            "DOC": 0,
+            "ROP": 0,
+            "LOP": 0,
+            "DOP": 0,
+            "P4D": 0,
+            "RON": 0,
+            "LON": 0,
+            "DON": 0,
+            "NHX": 0,
+            "NOX": 0,
+            "SUU": 0,
+            "SAA": 0,
+            "COD": 0,
+            "DOX": 0,
+            "TAM": 0,
+            "FCB": 0,
+            "CO2": 0,
+            "ALG1": 0
+        }
+      },
+      {
+        "name": "D5",
+        "I": 10,
+        "J": 6,
+        "K": 0,
+        "NSR": 4,
+        "PSQ": 0,
+        "concentrations": {
+            "ROC": 0,
+            "LOC": 0,
+            "DOC": 0,
+            "ROP": 0,
+            "LOP": 0,
+            "DOP": 0,
+            "P4D": 0,
+            "RON": 0,
+            "LON": 0,
+            "DON": 0,
+            "NHX": 0,
+            "NOX": 0,
+            "SUU": 0,
+            "SAA": 0,
+            "COD": 0,
+            "DOX": 0,
+            "TAM": 0,
+            "FCB": 0,
+            "CO2": 0,
+            "ALG1": 0
+        }
+      },
+      {
+        "name": "D6",
+        "I": 17,
+        "J": 8,
+        "K": 0,
+        "NSR": 4,
+        "PSQ": 0,
+        "concentrations": {
+            "ROC": 0,
+            "LOC": 0,
+            "DOC": 0,
+            "ROP": 0,
+            "LOP": 0,
+            "DOP": 0,
+            "P4D": 0,
+            "RON": 0,
+            "LON": 0,
+            "DON": 0,
+            "NHX": 0,
+            "NOX": 0,
+            "SUU": 0,
+            "SAA": 0,
+            "COD": 0,
+            "DOX": 0,
+            "TAM": 0,
+            "FCB": 0,
+            "CO2": 0,
+            "ALG1": 0
+        }
+      },
+      {
+        "name": "D7",
+        "I": 28,
+        "J": 47,
+        "K": 0,
+        "NSR": 4,
+        "PSQ": 0,
+        "concentrations": {
+            "ROC": 0,
+            "LOC": 0,
+            "DOC": 0,
+            "ROP": 0,
+            "LOP": 0,
+            "DOP": 0,
+            "P4D": 0,
+            "RON": 0,
+            "LON": 0,
+            "DON": 0,
+            "NHX": 0,
+            "NOX": 0,
+            "SUU": 0,
+            "SAA": 0,
+            "COD": 0,
+            "DOX": 0,
+            "TAM": 0,
+            "FCB": 0,
+            "CO2": 0,
+            "ALG1": 0
+        }
+      }
+    ]
+  },
+  "const_initial_conditions": {
+    "ROC": 0.05,
+    "LOC": 0.05,
+    "DOC": 0.01,
+    "ROP": 0.004,
+    "LOP": 0.008,
+    "DOP": 0.0143,
+    "P4D": 0.0685,
+    "RON": 0.061,
+    "LON": 0.212,
+    "DON": 1.2,
+    "NHX": 0.025,
+    "NOX": 0.120,
+    "SUU": 0.1,
+    "SAA": 1.2,
+    "COD": 4.89,
+    "DOX": 8.807,
+    "TAM": 0,
+    "FCB": 0,
+    "CO2": 0,
+    "ALG1": 221.003
+  },
+  "dry_atmospheric_deposition": {
+    "DSQ": 0,
+    "ROC": 0,
+    "LOC": 0,
+    "DOC": 0,
+    "ROP": 0,
+    "LOP": 0,
+    "DOP": 0,
+    "P4D": 0,
+    "RON": 0,
+    "LON": 0,
+    "DON": 0,
+    "NHX": 0,
+    "NOX": 0,
+    "SUU": 0,
+    "SAA": 0,
+    "COD": 0,
+    "DOX": 0,
+    "TAM": 0,
+    "FCB": 0,
+    "CO2": 0,
+    "ALG1": 0
+  },
+  "wet_atmospheric_deposition": {
+    "ROC": 0,
+    "LOC": 0,
+    "DOC": 0,
+    "ROP": 0,
+    "LOP": 0,
+    "DOP": 0,
+    "P4D": 0,
+    "RON": 0,
+    "LON": 0,
+    "DON": 0,
+    "NHX": 0,
+    "NOX": 0,
+    "SUU": 0,
+    "SAA": 0,
+    "COD": 0,
+    "DOX": 0,
+    "TAM": 0,
+    "FCB": 0,
+    "CO2": 0,
+    "ALG1": 0
+  }
+}

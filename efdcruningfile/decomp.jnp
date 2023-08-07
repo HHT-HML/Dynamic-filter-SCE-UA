@@ -1,0 +1,8 @@
+{
+	"number_i_subdomains": 2,
+	"number_j_subdomains": 4,
+	"number_active_subdomains": 8,
+	"i_subdomain_widths": [ 18,18 ],
+	"j_subdomain_widths": [ 15,15,14,14 ],
+	"active_flag": [1,1,1,1,1,1,1,1]
+}

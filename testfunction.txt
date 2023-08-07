@@ -1,0 +1,988 @@
+"""CF4"""
+"""5d"""
+#Parameter range
+bl = np.array([-32,-32,-5,-5,-0.5])
+bu = np.array([32.,32.,5.,5.,0.5])
+x0 = np.array([0,0,0,0,0])
+problem = {
+   'num_vars': 5,
+   'names': ['x1', 'x2', 'x3', 'x4','x5'],
+   'groups': None,
+   'bounds': [[-32, 32.0],
+             [-32, 32.0],
+             [-5, 5.0],
+             [-5, 5.0],
+              [-0.5, 0.5]]}
+#Function Details
+def testfunctn(nopt,x,wq_inst,Y):
+    filepath=os.getcwd()
+    para_path=filepath+os.sep+"param_40.txt"
+    if(not os.path.exists(para_path)):
+        params_file=open(para_path,"w+")
+        for i in x:
+            params_file.write(str(i)+'  ')
+        params_file.write('\n')
+        params_file.close()
+    else:
+        params_file = open(para_path, "r+")
+        params_list=params_file.readlines()
+        params_file.close()
+        params_file = open(para_path, "w+")
+        for i in params_list:
+            params_file.write(i)
+        for i in x:
+            params_file.write(str(i) + '  ')
+        params_file.write('\n')
+        params_file.close()
+    bias=[]
+    biasinit=0
+    for i in range(len(x)):
+        bias.append(biasinit)
+        biasinit+=100
+    r=[5/32,5/32,1,1,5/0.5,5/0.5,5/100,5/100,5/100,5/100]
+    res=0
+    xfirst=[]
+    for i in range(len(x)):
+        if i==1 or i==2:
+            xfirst.append(x[i])
+            if i==2:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Ackley(xfirst) * r[i])
+                xfirst=[]
+        if i==3 or i==4:
+            xfirst.append(x[i])
+            if i==4:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Rastrigin(xfirst) * r[i])
+                xfirst=[]
+        if i==5 or i==6:
+            xfirst.append(x[i])
+            if i==6:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Weierstrass(xfirst) * r[i])
+                xfirst=[]
+        if i==7 or i==8:
+            xfirst.append(x[i])
+            if i==8:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Griewank(xfirst) * r[i])
+                xfirst=[]
+        if i==9 or i==10:
+            xfirst.append(x[i])
+            if i==10:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Sphere(xfirst) * r[i])
+                xfirst=[]
+
+    like = res
+    return like
+
+"""CF4 """
+"""10d"""
+# Read the parameter range file and generate samples
+# problem = read_param_file("./src/SALib/test_functions/params/Sobol_G.txt")
+bl = np.array([-32,-32,-5,-5,-0.5,-0.5,-100,-100,-100,-100,-100])
+bu = np.array([32.,32.,5.,5.,0.5,0.5,100,100,100,100])
+x0 = np.array([0,0,0,0,0,0,0,0,0,0])
+# or define manually without a parameter file:
+problem = {
+   'num_vars': 10,
+   'names': ['x1', 'x2', 'x3', 'x4','x5','x6', 'x7', 'x8', 'x9','x10'],
+   'groups': None,
+   'bounds': [[-32, 32.0],
+             [-32, 32.0],
+             [-5, 5.0],
+             [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100]]}
+# Files with a 4th column for "group name" will be detected automatically, e.g.
+# param_file = '../../src/SALib/test_functions/params/Ishigami_groups.txt'
+def testfunctn1(nopt,x,wq_inst,Y):
+    filepath=os.getcwd()
+    para_path=filepath+os.sep+"param_40.txt"
+    if(not os.path.exists(para_path)):
+        params_file=open(para_path,"w+")
+        for i in x:
+            params_file.write(str(i)+'  ')
+        params_file.write('\n')
+        params_file.close()
+    else:
+        params_file = open(para_path, "r+")
+        params_list=params_file.readlines()
+        params_file.close()
+        params_file = open(para_path, "w+")
+        for i in params_list:
+            params_file.write(i)
+        for i in x:
+            params_file.write(str(i) + '  ')
+        params_file.write('\n')
+        params_file.close()
+    bias=[]
+    biasinit=0
+    for i in range(len(x)):
+        bias.append(biasinit)
+        biasinit+=100
+    r=[5/32,5/32,1,1,5/0.5,5/0.5,5/100,5/100,5/100,5/100]
+    res=0
+    xfirst=[]
+    for i in range(len(x)):
+        if i==1 or i==2:
+            xfirst.append(x[i])
+            if i==2:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Ackley(xfirst) * r[i])
+                xfirst=[]
+        if i==3 or i==4:
+            xfirst.append(x[i])
+            if i==4:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Rastrigin(xfirst) * r[i])
+                xfirst=[]
+        if i==5 or i==6:
+            xfirst.append(x[i])
+            if i==6:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Weierstrass(xfirst) * r[i])
+                xfirst=[]
+        if i==7 or i==8:
+            xfirst.append(x[i])
+            if i==8:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Griewank(xfirst) * r[i])
+                xfirst=[]
+        if i==9 or i==10:
+            xfirst.append(x[i])
+            if i==10:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Sphere(xfirst) * r[i])
+                xfirst=[]
+
+    like = res
+    return like
+
+"""CF4 """
+"""20d"""
+# Read the parameter range file and generate samples
+# problem = read_param_file("./src/SALib/test_functions/params/Sobol_G.txt")
+bl = np.array([-32,-32,-5,-5,-0.5,-0.5,-100,-100,-100,-100,-100,-32,-32,-5,-5,-0.5,-0.5,-100,-100,-100,-100,-100])
+bu = np.array([32.,32.,5.,5.,0.5,0.5,100,100,100,100,32.,32.,5.,5.,0.5,0.5,100,100,100,100,])
+x0 = np.array([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+# or define manually without a parameter file:
+problem = {
+   'num_vars': 20,
+   'names': ['x1', 'x2', 'x3', 'x4','x5','x6', 'x7', 'x8', 'x9','x10','x11', 'x12', 'x13', 'x14','x15','x16', 'x17', 'x18', 'x19','x20'],
+   'groups': None,
+   'bounds': [[-32, 32.0],
+             [-32, 32.0],
+             [-5, 5.0],
+             [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+              [-32, 32.0],
+              [-32, 32.0],
+              [-5, 5.0],
+              [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100]
+              ]}
+# Files with a 4th column for "group name" will be detected automatically, e.g.
+# param_file = '../../src/SALib/test_functions/params/Ishigami_groups.txt'
+def testfunctn1(nopt,x,wq_inst,Y):
+    filepath=os.getcwd()
+    para_path=filepath+os.sep+"param_20.txt"
+    if(not os.path.exists(para_path)):
+        params_file=open(para_path,"w+")
+        for i in x:
+            params_file.write(str(i)+'  ')
+        params_file.write('\n')
+        params_file.close()
+    else:
+        params_file = open(para_path, "r+")
+        params_list=params_file.readlines()
+        params_file.close()
+        params_file = open(para_path, "w+")
+        for i in params_list:
+            params_file.write(i)
+        for i in x:
+            params_file.write(str(i) + '  ')
+        params_file.write('\n')
+        params_file.close()
+    bias=[]
+    biasinit=0
+    for i in range(len(x)):
+        bias.append(biasinit)
+        biasinit+=100
+    r=[5/32,5/32,1,1,5/0.5,5/0.5,5/100,5/100,5/100,5/100,5/32,5/32,1,1,5/0.5,5/0.5,5/100,5/100,5/100,5/100]
+    res=0
+    xfirst=[]
+    for i in range(len(x)):
+        if i==0:
+            xfirst.append(x[i])
+        if i==2:
+            xfirst.append(x[i])
+        if i==13:
+            xfirst.append(x[i])
+        if i==14:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Ackley(xfirst) * r[i])
+            xfirst = []
+        if i==3:
+            xfirst.append(x[i])
+        if i==4:
+            xfirst.append(x[i])
+        if i==19:
+            xfirst.append(x[i])
+        if i==16:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Rastrigin(xfirst) * r[i])
+            xfirst = []
+        if i==5:
+            xfirst.append(x[i])
+        if i==6:
+            xfirst.append(x[i])
+        if i==15:
+            xfirst.append(x[i])
+        if i==18:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Weierstrass(xfirst) * r[i])
+            xfirst = []
+        if i==7:
+            xfirst.append(x[i])
+        if i==8:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Griewank(xfirst) * r[i])
+            xfirst = []
+        if i==8:
+            xfirst.append(x[i])
+        if i==9:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Sphere(xfirst) * r[i])
+            xfirst = []
+
+    like = res
+    return like
+
+"""CF4 """
+"""40d"""
+# Read the parameter range file and generate samples
+# problem = read_param_file("./src/SALib/test_functions/params/Sobol_G.txt")
+bl = np.array([-32,-32,-5,-5,-0.5,-0.5,-100,-100,-100,-100,-100,-32,-32,-5,-5,-0.5,-0.5,-100,-100,-100,-100,-100,-32,-32,-5,-5,-0.5,-0.5,-100,-100,-100,-100,-100,-32,-32,-5,-5,-0.5,-0.5,-100,-100,-100,-100,-100])
+bu = np.array([32.,32.,5.,5.,0.5,0.5,100,100,100,100,32.,32.,5.,5.,0.5,0.5,100,100,100,100,32.,32.,5.,5.,0.5,0.5,100,100,100,100,32.,32.,5.,5.,0.5,0.5,100,100,100,100,])
+x0 = np.array([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+# or define manually without a parameter file:
+problem = {
+   'num_vars': 40,
+   'names': ['x1', 'x2', 'x3', 'x4','x5','x6', 'x7', 'x8', 'x9','x10','x11', 'x12', 'x13', 'x14','x15','x16', 'x17', 'x18', 'x19','x20','x21', 'x22', 'x23', 'x24','x25','x26', 'x27', 'x28', 'x29','x30','x31', 'x32', 'x33', 'x34','x35','x36', 'x37', 'x38', 'x39','x40'],
+   'groups': None,
+   'bounds': [[-32, 32.0],
+             [-32, 32.0],
+             [-5, 5.0],
+             [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+              [-32, 32.0],
+              [-32, 32.0],
+              [-5, 5.0],
+              [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+[-32, 32.0],
+             [-32, 32.0],
+             [-5, 5.0],
+             [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+              [-32, 32.0],
+              [-32, 32.0],
+              [-5, 5.0],
+              [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100],
+              [-100, 100]
+              ]}
+# Files with a 4th column for "group name" will be detected automatically, e.g.
+# param_file = '../../src/SALib/test_functions/params/Ishigami_groups.txt'
+def testfunctn1(nopt,x,wq_inst,Y):
+    filepath=os.getcwd()
+    para_path=filepath+os.sep+"param_20.txt"
+    if(not os.path.exists(para_path)):
+        params_file=open(para_path,"w+")
+        for i in x:
+            params_file.write(str(i)+'  ')
+        params_file.write('\n')
+        params_file.close()
+    else:
+        params_file = open(para_path, "r+")
+        params_list=params_file.readlines()
+        params_file.close()
+        params_file = open(para_path, "w+")
+        for i in params_list:
+            params_file.write(i)
+        for i in x:
+            params_file.write(str(i) + '  ')
+        params_file.write('\n')
+        params_file.close()
+    bias=[]
+    biasinit=0
+    for i in range(len(x)):
+        bias.append(biasinit)
+        biasinit+=100
+    r=[5/32,5/32,1,1,5/0.5,5/0.5,5/100,5/100,5/100,5/100,5/32,5/32,1,1,5/0.5,5/0.5,5/100,5/100,5/100,5/100,5/32,5/32,1,1,5/0.5,5/0.5,5/100,5/100,5/100,5/100,5/32,5/32,1,1,5/0.5,5/0.5,5/100,5/100,5/100,5/100]
+    res=0
+    xfirst=[]
+    for i in range(len(x)):
+        if i==0 or i==34 or i==38 or i==25:
+            xfirst.append(x[i])
+        if i==2 or i==22 or i==23 or i==33:
+            xfirst.append(x[i])
+        if i==13:
+            xfirst.append(x[i])
+        if i==14 or i==39 or i==29 or i==26:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Ackley(xfirst) * r[i])
+            xfirst = []
+        if i==3 or i==44 or i==28 or i==31:
+            xfirst.append(x[i])
+        if i==4:
+            xfirst.append(x[i])
+        if i==19:
+            xfirst.append(x[i])
+        if i==16 or i==27 or i==20 or i==25:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Rastrigin(xfirst) * r[i])
+            xfirst = []
+        if i==5:
+            xfirst.append(x[i])
+        if i==6:
+            xfirst.append(x[i])
+        if i==15:
+            xfirst.append(x[i])
+        if i==18:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Weierstrass(xfirst) * r[i])
+            xfirst = []
+        if i==7:
+            xfirst.append(x[i])
+        if i==8:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Griewank(xfirst) * r[i])
+            xfirst = []
+        if i==8:
+            xfirst.append(x[i])
+        if i==9:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Sphere(xfirst) * r[i])
+            xfirst = []
+
+    like = res
+    return like
+
+"""CF5"""
+"""5d"""
+# Read the parameter range file and generate samples
+# problem = read_param_file("./src/SALib/test_functions/params/Sobol_G.txt")
+bl = np.array([-5,-5,-0.5,-0.5,-100])
+bu = np.array([5.,5.,0.5,0.5,100])
+x0 = np.array([0,0,0,0,0])
+# or define manually without a parameter file:
+problem = {
+   'num_vars': 5,
+   'names': ['x1', 'x2', 'x3', 'x4','x5'],
+   'groups': None,
+   'bounds': [[-5, 5.0],
+             [-5, 5.0],
+             [-0.5, 0.5],
+             [-0.5, 0.5],
+              [-100, 100]]}
+# Files with a 4th column for "group name" will be detected automatically, e.g.
+# param_file = '../../src/SALib/test_functions/params/Ishigami_groups.txt'
+def testfunctn1(nopt,x,wq_inst,Y):
+    filepath=os.getcwd()
+    para_path=filepath+os.sep+"param_40.txt"
+    if(not os.path.exists(para_path)):
+        params_file=open(para_path,"w+")
+        for i in x:
+            params_file.write(str(i)+'  ')
+        params_file.write('\n')
+        params_file.close()
+    else:
+        params_file = open(para_path, "r+")
+        params_list=params_file.readlines()
+        params_file.close()
+        params_file = open(para_path, "w+")
+        for i in params_list:
+            params_file.write(i)
+        for i in x:
+            params_file.write(str(i) + '  ')
+        params_file.write('\n')
+        params_file.close()
+    bias=[]
+    biasinit=0
+    for i in range(len(x)):
+        bias.append(biasinit)
+        biasinit+=100
+    r=[1/5,1/5,5/0.5,5/0.5,5/100,5/100,5/32,5/32,5/100,5/100]
+    res=0
+    xfirst=[]
+    for i in range(len(x)):
+        if i==1 or i==2:
+            xfirst.append(x[i])
+            if i==2:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Rastrigin(xfirst) * r[i])
+                xfirst=[]
+        if i==3 or i==4:
+            xfirst.append(x[i])
+            if i==4:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Weierstrass(xfirst) * r[i])
+                xfirst=[]
+        if i==5 or i==6:
+            xfirst.append(x[i])
+            if i==6:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Griewank(xfirst) * r[i])
+                xfirst=[]
+        if i==7 or i==8:
+            xfirst.append(x[i])
+            if i==8:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Ackley(xfirst) * r[i])
+                xfirst=[]
+        if i==9 or i==10:
+            xfirst.append(x[i])
+            if i==10:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Sphere(xfirst) * r[i])
+                xfirst=[]
+
+    like = res
+    return like
+
+
+"""CF5 """
+"""10d"""
+# Read the parameter range file and generate samples
+# problem = read_param_file("./src/SALib/test_functions/params/Sobol_G.txt")
+bl = np.array([-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100])
+bu = np.array([5.,5.,0.5,0.5,100,100,32,32,100,100])
+x0 = np.array([0,0,0,0,0,0,0,0,0,0])
+# or define manually without a parameter file:
+problem = {
+   'num_vars': 10,
+   'names': ['x1', 'x2', 'x3', 'x4','x5','x6', 'x7', 'x8', 'x9','x10'],
+   'groups': None,
+   'bounds': [[-5, 5.0],
+             [-5, 5.0],
+             [-0.5, 0.5],
+             [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32,32],
+              [-32,32],
+              [-100,100],
+              [-100,100]]}
+# Files with a 4th column for "group name" will be detected automatically, e.g.
+# param_file = '../../src/SALib/test_functions/params/Ishigami_groups.txt'
+def testfunctn1(nopt,x,wq_inst,Y):
+    filepath=os.getcwd()
+    para_path=filepath+os.sep+"param_40.txt"
+    if(not os.path.exists(para_path)):
+        params_file=open(para_path,"w+")
+        for i in x:
+            params_file.write(str(i)+'  ')
+        params_file.write('\n')
+        params_file.close()
+    else:
+        params_file = open(para_path, "r+")
+        params_list=params_file.readlines()
+        params_file.close()
+        params_file = open(para_path, "w+")
+        for i in params_list:
+            params_file.write(i)
+        for i in x:
+            params_file.write(str(i) + '  ')
+        params_file.write('\n')
+        params_file.close()
+    bias=[]
+    biasinit=0
+    for i in range(len(x)):
+        bias.append(biasinit)
+        biasinit+=100
+    r=[1/5,1/5,5/0.5,5/0.5,5/100,5/100,5/32,5/32,5/100,5/100]
+    res=0
+    xfirst=[]
+    for i in range(len(x)):
+        if i==0 or i==1:
+            xfirst.append(x[i])
+            if i==1:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Rastrigin(xfirst) * r[i])
+                xfirst=[]
+        if i==4:
+            xfirst.append(x[i])
+            if i==4:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Weierstrass(xfirst) * r[i])
+                xfirst=[]
+        if i==5 or i==6:
+            xfirst.append(x[i])
+            if i==6:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Griewank(xfirst) * r[i])
+                xfirst=[]
+        if i==7 or i==8:
+            xfirst.append(x[i])
+            if i==8:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Ackley(xfirst) * r[i])
+                xfirst=[]
+        if i==10:
+            xfirst.append(x[i])
+            if i==9:
+                res += math.exp(x[i] / 2 * len(x)) * (bias[i] + Sphere(xfirst) * r[i])
+                xfirst=[]
+
+    like = res
+    return like
+
+"""CF5 """
+"""20d"""
+# Read the parameter range file and generate samples
+# problem = read_param_file("./src/SALib/test_functions/params/Sobol_G.txt")
+bl = np.array([-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100,-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100])
+bu = np.array([5.,5.,0.5,0.5,100,100,32,32,100,100,5.,5.,0.5,0.5,100,100,32,32,100,100])
+x0 = np.array([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+# or define manually without a parameter file:
+problem = {
+   'num_vars': 20,
+   'names': ['x1', 'x2', 'x3', 'x4','x5','x6', 'x7', 'x8', 'x9','x10'],
+   'groups': None,
+   'bounds': [[-5, 5.0],
+             [-5, 5.0],
+             [-0.5, 0.5],
+             [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32,32],
+              [-32,32],
+              [-100,100],
+              [-100,100],
+              [-5, 5.0],
+              [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32, 32],
+              [-32, 32],
+              [-100, 100],
+              [-100, 100]
+              ]}
+# Files with a 4th column for "group name" will be detected automatically, e.g.
+# param_file = '../../src/SALib/test_functions/params/Ishigami_groups.txt'
+def testfunctn1(nopt,x,wq_inst,Y):
+    filepath=os.getcwd()
+    para_path=filepath+os.sep+"param_40.txt"
+    if(not os.path.exists(para_path)):
+        params_file=open(para_path,"w+")
+        for i in x:
+            params_file.write(str(i)+'  ')
+        params_file.write('\n')
+        params_file.close()
+    else:
+        params_file = open(para_path, "r+")
+        params_list=params_file.readlines()
+        params_file.close()
+        params_file = open(para_path, "w+")
+        for i in params_list:
+            params_file.write(i)
+        for i in x:
+            params_file.write(str(i) + '  ')
+        params_file.write('\n')
+        params_file.close()
+    bias=[]
+    biasinit=0
+    for i in range(len(x)):
+        bias.append(biasinit)
+        biasinit+=100
+    r=[1/5,1/5,5/0.5,5/0.5,5/100,5/100,5/32,5/32,5/100,5/100,1/5,1/5,5/0.5,5/0.5,5/100,5/100,5/32,5/32,5/100,5/100]
+    res=0
+    xfirst=[]
+    for i in range(len(x)):
+        if i==0:
+            xfirst.append(x[i])
+        if i==1:
+            xfirst.append(x[i])
+        if i==17:
+            xfirst.append(x[i])
+        if i==18:
+            xfirst.append(x[i])
+        if i==19:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Rastrigin(xfirst) * r[i])
+            xfirst = []
+        if i==3:
+            xfirst.append(x[i])
+        if i==4:
+            xfirst.append(x[i])
+        if i==15:
+            xfirst.append(x[i])
+        if i==16:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Weierstrass(xfirst) * r[i])
+            xfirst = []
+        if i==5:
+            xfirst.append(x[i])
+        if i==6:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Griewank(xfirst) * r[i])
+            xfirst = []
+        if i==7 or i==8:
+            xfirst.append(x[i])
+            if i==8:
+                res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Ackley(xfirst) * r[i])
+                xfirst=[]
+        if i==10:
+            xfirst.append(x[i])
+            if i==10:
+                res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Sphere(xfirst) * r[i])
+                xfirst=[]
+
+    like = res
+    return like
+
+"""CF5 """
+"""40d"""
+# Read the parameter range file and generate samples
+# problem = read_param_file("./src/SALib/test_functions/params/Sobol_G.txt")
+bl = np.array([-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100,-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100,-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100,-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100])
+bu = np.array([5.,5.,0.5,0.5,100,100,32,32,100,100,5.,5.,0.5,0.5,100,100,32,32,100,100,5.,5.,0.5,0.5,100,100,32,32,100,100,5.,5.,0.5,0.5,100,100,32,32,100,100])
+x0 = np.array([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+# or define manually without a parameter file:
+problem = {
+   'num_vars': 40,
+   'names': ['x1', 'x2', 'x3', 'x4','x5','x6', 'x7', 'x8', 'x9','x10','x11', 'x12', 'x13', 'x14','x15','x16', 'x17', 'x18', 'x19','x20','x21', 'x22', 'x23', 'x24','x25','x26', 'x27', 'x28', 'x29','x30','x31', 'x32', 'x33', 'x34','x35','x36', 'x37', 'x38', 'x39','x40'],
+   'groups': None,
+   'bounds': [[-5, 5.0],
+             [-5, 5.0],
+             [-0.5, 0.5],
+             [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32,32],
+              [-32,32],
+              [-100,100],
+              [-100,100],
+              [-5, 5.0],
+              [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32, 32],
+              [-32, 32],
+              [-100, 100],
+              [-100, 100],
+[-5, 5.0],
+             [-5, 5.0],
+             [-0.5, 0.5],
+             [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32,32],
+              [-32,32],
+              [-100,100],
+              [-100,100],
+              [-5, 5.0],
+              [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32, 32],
+              [-32, 32],
+              [-100, 100],
+              [-100, 100]
+              ]}
+# Files with a 4th column for "group name" will be detected automatically, e.g.
+# param_file = '../../src/SALib/test_functions/params/Ishigami_groups.txt'
+def testfunctn1(nopt,x,wq_inst,Y):
+    filepath=os.getcwd()
+    para_path=filepath+os.sep+"param_40.txt"
+    if(not os.path.exists(para_path)):
+        params_file=open(para_path,"w+")
+        for i in x:
+            params_file.write(str(i)+'  ')
+        params_file.write('\n')
+        params_file.close()
+    else:
+        params_file = open(para_path, "r+")
+        params_list=params_file.readlines()
+        params_file.close()
+        params_file = open(para_path, "w+")
+        for i in params_list:
+            params_file.write(i)
+        for i in x:
+            params_file.write(str(i) + '  ')
+        params_file.write('\n')
+        params_file.close()
+    bias=[]
+    biasinit=0
+    for i in range(len(x)):
+        bias.append(biasinit)
+        biasinit+=100
+    r=[1/5,1/5,5/0.5,5/0.5,5/100,5/100,5/32,5/32,5/100,5/100,1/5,1/5,5/0.5,5/0.5,5/100,5/100,5/32,5/32,5/100,5/100,1/5,1/5,5/0.5,5/0.5,5/100,5/100,5/32,5/32,5/100,5/100,1/5,1/5,5/0.5,5/0.5,5/100,5/100,5/32,5/32,5/100,5/100]
+    res=0
+    xfirst=[]
+    for i in range(len(x)):
+        if i==0 or i==39 or i==28 or i==26:
+            xfirst.append(x[i])
+        if i==1:
+            xfirst.append(x[i])
+        if i==17:
+            xfirst.append(x[i])
+        if i==18:
+            xfirst.append(x[i])
+        if i==19 or i==28 or i==37 or i==22:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Rastrigin(xfirst) * r[i])
+            xfirst = []
+        if i==3:
+            xfirst.append(x[i])
+        if i==4 or i==10 or i==28 or i==21:
+            xfirst.append(x[i])
+        if i==15 or i==34 or i==33 or i==25:
+            xfirst.append(x[i])
+        if i==16 or i==29 or i==33 or i==23:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Weierstrass(xfirst) * r[i])
+            xfirst = []
+        if i==5 or i==27 or i==33:
+            xfirst.append(x[i])
+        if i==6:
+            xfirst.append(x[i])
+            res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Griewank(xfirst) * r[i])
+            xfirst = []
+        if i==7 or i==8:
+            xfirst.append(x[i])
+            if i==8:
+                res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Ackley(xfirst) * r[i])
+                xfirst=[]
+        if i==10:
+            xfirst.append(x[i])
+            if i==10:
+                res += math.exp(x[i] / (2 * len(x))) * (bias[i] + Sphere(xfirst) * r[i])
+                xfirst=[]
+
+    like = res
+    return like
+
+
+
+"""CF6"""
+"""10d"""
+# Read the parameter range file and generate samples
+# problem = read_param_file("./src/SALib/test_functions/params/Sobol_G.txt")
+bl = np.array([-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100])
+bu = np.array([5.,5.,0.5,0.5,100,100,32,32,100,100])
+x0 = np.array([0,0,0,0,0,0,0,0,0,0])
+# or define manually without a parameter file:
+problem = {
+   'num_vars': 10,
+   'names': ['x1', 'x2', 'x3', 'x4','x5','x6', 'x7', 'x8', 'x9','x10'],
+   'groups': None,
+   'bounds': [[-5, 5.0],
+             [-5, 5.0],
+             [-0.5, 0.5],
+             [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32,32],
+              [-32,32],
+              [-100,100],
+              [-100,100]]}
+# Files with a 4th column for "group name" will be detected automatically, e.g.
+# param_file = '../../src/SALib/test_functions/params/Ishigami_groups.txt'
+def testfunctn1(nopt,x,wq_inst,Y):
+    filepath=os.getcwd()
+    para_path=filepath+os.sep+"param_40.txt"
+    if(not os.path.exists(para_path)):
+        params_file=open(para_path,"w+")
+        for i in x:
+            params_file.write(str(i)+'  ')
+        params_file.write('\n')
+        params_file.close()
+    else:
+        params_file = open(para_path, "r+")
+        params_list=params_file.readlines()
+        params_file.close()
+        params_file = open(para_path, "w+")
+        for i in params_list:
+            params_file.write(i)
+        for i in x:
+            params_file.write(str(i) + '  ')
+        params_file.write('\n')
+        params_file.close()
+    bias=[]
+    biasinit=0
+    for i in range(len(x)):
+        bias.append(biasinit)
+        biasinit+=100
+    r=[0.1*1/5, 0.2*1/5, 0.3*5/0.5, 0.4*5/0.5, 0.5*5/100, 0.6*5/100, 0.7*5/32, 0.8*5/32, 0.9*5/100, 1*5/100]
+    s=[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+    res=0
+    xfirst=[]
+    for i in range(len(x)):
+        if i==0 or i==1:
+            xfirst.append(x[i])
+            if i==1:
+                res += math.exp(x[i] / 2 * len(x)*s[i]) * (Rastrigin(xfirst) * r[i])
+                xfirst=[]
+        if i==3 or i==4:
+            xfirst.append(x[i])
+            if i==4:
+                res += math.exp(x[i] / 2 * len(x)*s[i]) * (Weierstrass(xfirst) * r[i])
+                xfirst=[]
+        if i==6:
+            xfirst.append(x[i])
+            if i==6:
+                res += math.exp(x[i] / 2 * len(x)*s[i]) * (Griewank(xfirst) * r[i])
+                xfirst=[]
+        if i==7:
+            xfirst.append(x[i])
+            if i==7:
+                res += math.exp(x[i] / 2 * len(x)*s[i]) * (Ackley(xfirst) * r[i])
+                xfirst=[]
+        if i==8 or i==9:
+            xfirst.append(x[i])
+            if i==9:
+                res += math.exp(x[i] / 2 * len(x)*s[i]) * (Sphere(xfirst) * r[i])
+                xfirst=[]
+
+    like = res
+    return like
+
+
+
+"""CF6"""
+"""40d"""
+# Read the parameter range file and generate samples
+# problem = read_param_file("./src/SALib/test_functions/params/Sobol_G.txt")
+bl = np.array([-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100,-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100,-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100,-5,-5,-0.5,-0.5,-100,-100,-32,-32,-100,-100])
+bu = np.array([5.,5.,0.5,0.5,100,100,32,32,100,100,5.,5.,0.5,0.5,100,100,32,32,100,100,5.,5.,0.5,0.5,100,100,32,32,100,100,5.,5.,0.5,0.5,100,100,32,32,100,100])
+x0 = np.array([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+# or define manually without a parameter file:
+problem = {
+   'num_vars': 40,
+   'names': ['x1', 'x2', 'x3', 'x4','x5','x6', 'x7', 'x8', 'x9','x10','x11', 'x12', 'x13', 'x14','x15','x16', 'x17', 'x18', 'x19','x20','x21', 'x22', 'x23', 'x24','x25','x26', 'x27', 'x28', 'x29','x30','x31', 'x32', 'x33', 'x34','x35','x36', 'x37', 'x38', 'x39','x40'],
+   'groups': None,
+   'bounds': [[-5, 5.0],
+             [-5, 5.0],
+             [-0.5, 0.5],
+             [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32,32],
+              [-32,32],
+              [-100,100],
+              [-100,100],
+              [-5, 5.0],
+              [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32, 32],
+              [-32, 32],
+              [-100, 100],
+              [-100, 100],
+[-5, 5.0],
+             [-5, 5.0],
+             [-0.5, 0.5],
+             [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32,32],
+              [-32,32],
+              [-100,100],
+              [-100,100],
+              [-5, 5.0],
+              [-5, 5.0],
+              [-0.5, 0.5],
+              [-0.5, 0.5],
+              [-100, 100],
+              [-100, 100],
+              [-32, 32],
+              [-32, 32],
+              [-100, 100],
+              [-100, 100]
+              ]}
+# Files with a 4th column for "group name" will be detected automatically, e.g.
+# param_file = '../../src/SALib/test_functions/params/Ishigami_groups.txt'
+def testfunctn1(nopt,x,wq_inst,Y):
+    filepath=os.getcwd()
+    para_path=filepath+os.sep+"param_40.txt"
+    if(not os.path.exists(para_path)):
+        params_file=open(para_path,"w+")
+        for i in x:
+            params_file.write(str(i)+'  ')
+        params_file.write('\n')
+        params_file.close()
+    else:
+        params_file = open(para_path, "r+")
+        params_list=params_file.readlines()
+        params_file.close()
+        params_file = open(para_path, "w+")
+        for i in params_list:
+            params_file.write(i)
+        for i in x:
+            params_file.write(str(i) + '  ')
+        params_file.write('\n')
+        params_file.close()
+    bias=[]
+    biasinit=0
+    for i in range(len(x)):
+        bias.append(biasinit)
+        biasinit+=100
+    r=[0.1*1/5, 0.2*1/5, 0.3*5/0.5, 0.4*5/0.5, 0.5*5/100, 0.6*5/100, 0.7*5/32, 0.8*5/32, 0.9*5/100, 1*5/100,0.1*1/5, 0.2*1/5, 0.3*5/0.5, 0.4*5/0.5, 0.5*5/100, 0.6*5/100, 0.7*5/32, 0.8*5/32, 0.9*5/100, 1*5/100,0.1*1/5, 0.2*1/5, 0.3*5/0.5, 0.4*5/0.5, 0.5*5/100, 0.6*5/100, 0.7*5/32, 0.8*5/32, 0.9*5/100, 1*5/100,0.1*1/5, 0.2*1/5, 0.3*5/0.5, 0.4*5/0.5, 0.5*5/100, 0.6*5/100, 0.7*5/32, 0.8*5/32, 0.9*5/100, 1*5/100]
+    s=[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1,0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1,0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1,0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+    res=0
+    xfirst=[]
+    for i in range(len(x)):
+        if i==0 or i==1 or i==11 or i==10 or i==21 or i==22 or i==30 or i==31:
+            xfirst.append(x[i])
+            if i==21:
+                res += math.exp(x[i] / (2 * len(x)*s[i])) * (Rastrigin(xfirst) * r[i])
+                xfirst=[]
+        if i==3 or i==4 or i==13 or i==14 or i==23 or i==24 or i==33 or i==34:
+            xfirst.append(x[i])
+            if i==16:
+                res += math.exp(x[i] / (2 * len(x)*s[i])) * (Weierstrass(xfirst) * r[i])
+                xfirst=[]
+        if i==6 or i==16 or i==26 or i==36:
+            xfirst.append(x[i])
+            if i==6:
+                res += math.exp(x[i] / (2 * len(x)*s[i])) * (Griewank(xfirst) * r[i])
+                xfirst=[]
+        if i==7 or i==17 or i==27 or i==37:
+            xfirst.append(x[i])
+            if i==7:
+                res += math.exp(x[i] / (2 * len(x)*s[i])) * (Ackley(xfirst) * r[i])
+                xfirst=[]
+        if i==8 or i==9 or i==28 or i==39:
+            xfirst.append(x[i])
+            if i==9:
+                res += math.exp(x[i] / (2 * len(x)*s[i])) * (Sphere(xfirst) * r[i])
+                xfirst=[]
+
+    like = res
+    return like
